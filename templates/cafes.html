@@ -1,0 +1,89 @@
+ {% include "header.html" %}
+
+            <main role="main" class="inner cover cover-cafes">
+
+                <div class="cafe-cards">
+
+                    <h1 class="cafes-heading" id="page_head">Cafes in London </h1></a>
+
+                    {% for cafe in cafes: %}
+
+                    <div class="card card-main mb-3" id={{cafe.id}} style="max-width: 65%;">
+
+                        <div class="row no-gutters row-card">
+
+                            <div class="col-md-4 col-img">
+                                {% if cafe.img_url: %}
+                                    <img class="card-img cafe-img img-fluid" src="{{ cafe.img_url }}" alt="{{ cafe.name }}">
+                                {% else: %}  <!-- default image if none was supplied -->
+                                    <img class="card-img cafe-img cafe-img-default img-fluid" src="{{ url_for('static', filename='images/coffee.png') }}" alt="coffee yum!">
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card-body ">
+                                    <!-- if in update route the delete button is visible -->
+                                    {% if can_update %}
+                                        <a href="{{ url_for('update_cafe', api_key=key,  id=cafe.id, cafe_closed=True) }}"
+                                            <i class="fa-solid fa-xmark fa-lg delete-card"></i>
+                                        </a>
+                                    {% endif %}
+
+                                    <h5 class="card-title title-text">{{ cafe.name }} </h5>
+                                    <p class="card-text card-info ">Where? {{ cafe.location }}<a href="{{ cafe.map_url }}" class="card-a" target="_blank">show me!</a></p>
+                                    <p class="card-text card-info">How many seats? {{ cafe.seats }}</p>
+                                    <p class="card-text card-info">Coffee price: {{ cafe.coffee_price }}</p>
+                                    {% if cafe.has_wifi %}
+                                        <span class="fa-stack fa-lg u-icon">
+                                            <i class="fa-solid fa-square fa-stack-2x icon-bg"></i>
+                                            <i class="fab fa-solid fa-wifi fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    {% endif %}
+                                    {% if cafe.has_toilet %}
+                                        <span class="fa-stack fa-lg u-icon">
+                                           <i class="fa-solid fa-square fa-stack-2x icon-bg"></i>
+                                           <i class="fab fa-solid fa-toilet-paper fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    {% endif %}
+                                    {% if cafe.has_sockets %}
+                                        <span class="fa-stack fa-lg u-icon">
+                                           <i class="fa-solid fa-square fa-stack-2x icon-bg"></i>
+                                           <i class="fab fa-solid fa-plug fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    {% endif %}
+                                    {% if cafe.can_take_calls %}
+                                         <span class="fa-stack fa-lg u-icon">
+                                           <i class="fa-solid fa-square fa-stack-2x icon-bg"></i>
+                                           <i class="fab fa-solid fa-phone fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                    {% endif %}
+
+                                    <!-- if in update route the update button is visible -->
+                                    {% if can_update %}
+                                    <a href="{{ url_for('update_cafe', api_key=key, id=cafe.id) }}"
+                                        <span class="fa-stack fa-lg update-card">
+                                           <i class="fa-solid fa-square fa-stack-2x sq-bg"></i>
+                                           <i class="fa-solid fa-pencil fa-stack-1x fa-inverse pen-bg"></i>
+                                        </span>
+                                    </a>
+                                    {% endif %}
+
+                                </div> <!-- close card-body div -->
+                            </div>  <!-- close col-md-8 (img) div -->
+                        </div>  <!-- close row no-gutters div -->
+                    </div>    <!-- close card card-main div -->
+                   {% endfor %}
+
+                </div>  <!-- close cafe-cards div -->
+
+                <div class="go-up">
+                    <a href="#page_head">
+                        <span class="fa-stack fa-lg icon-go-up">
+                            <i class="fa-solid fa-square fa-stack-2x sq-go-up"></i>
+                            <i class="fa-solid fa-arrow-up fa-stack-1x fa-inverse arrow-go-up"></i>
+                        </span>
+                    </a>
+                </div>
+            </main>
+
+{% include "footer.html" %}

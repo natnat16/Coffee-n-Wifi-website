@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="generator" content="Hugo 0.88.1">
+          
+        <title>Coffee & Wifi</title>
+         
+        <link rel="icon" href="/static/images/coffee-cup.png">
+        <script src="https://kit.fontawesome.com/6f1f0dacfc.js" crossorigin="anonymous"></script>
+         
+          <!-- Bootstrap 4.6 core CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">       
+          
+          <!-- Custom styles for this template -->    
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
+
+    <body>
+      
+        <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+                <div class="inner nav-bar">
+                    <h3 class="masthead-brand">Coffee & Wifi</h3>
+
+                    <nav class="nav nav-masthead">
+                        <a {% if request.path == '/' %}
+                                class="nav-link active"
+                           {% else %} 
+                               class="nav-link"
+                           {% endif %}    
+                            href="{{ url_for('home') }}">Home</a>
+                        <a {% if request.path in  ['/cafes/','/cafes/update/', '/cafes/add/'] %} 
+                                class="nav-link active"
+                           {% else %} 
+                               class="nav-link"
+                           {% endif %} 
+                            href="{{ url_for('show_cafes') }}">Cafes</a>
+                        <a {% if request.path in [ '/cafes/search/', '/cafes/search/update/' ] %} 
+                                class="nav-link active"
+                           {% else %} 
+                               class="nav-link"
+                           {% endif %}                                 
+                            href="{{ url_for('search_cafe') }}">Search</a>
+                    </nav>                                        
+                </div>
+            </header>
+          
