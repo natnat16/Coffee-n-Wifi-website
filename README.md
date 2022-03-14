@@ -13,7 +13,7 @@ You can search by a specific parameter (for now the name needs to be an exact ma
 
 The add, update, or delete routes are not linked in the webpage, they should be accessed via the address line.    
 An api_key parameter is required "url/?api_key=ah".  
-Since this a practice project the API key is given in the code so that viewers can get accsess to all routes.   
+Since this a practice project the API key is given in the code so that viewers can get access to all routes.   
 
 adding a cafe, a default image will be presented if one is not entered.  
   
